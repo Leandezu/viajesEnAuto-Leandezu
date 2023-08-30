@@ -1,0 +1,65 @@
+import clientes.*
+import remiseras.*
+
+describe "testing de Ana Maria" {
+	
+	test "Esta economicamente estable" {
+
+	assert.that(anaMaria.esEstable())
+
+	}
+
+	test "NO esta economicamente estable" {
+	
+		anaMaria.cambiarEstabilidad()
+		assert.notThat(anaMaria.esEstable())
+	
+	}
+	
+	test "Precio del kilometro cuando esta economicamente estable"{
+		assert.equals(30, anaMaria.precioDelViaje())
+	}
+	
+	test "Precio del kilometro cuando NO esta economicamente estable"{
+		anaMaria.cambiarEstabilidad()
+		assert.equals(25, anaMaria.precioDelViaje())
+	}
+	
+}
+
+describe "Testing de Teresa"{
+	
+	test "Precio por kilometro sin cambios igual a 22"{
+		assert.equals(22, teresa.precioDelViaje())
+	}
+	
+	test "Precio por kilometro con cambios igual a 32"{
+		teresa.cambiarPrecio(32)
+		assert.equals(32, teresa.precioDelViaje())
+	}
+	
+}
+
+describe "Testing de Lucia"{
+	test "No se puede reemplazar a si misma"{
+		assert.throwsExceptionWithMessage("No se puede reemplazar a si misma",
+			{lucia.estaReemplazando(lucia)}
+		)
+	}
+	test "Reemplazo de Roxana"{
+		lucia.estaReemplazando(roxana)
+		assert.equals(180, lucia.cobroDelViaje(ludmila, 10))
+	}
+}
+
+describe "Testing de Melina"{
+	test "No puede trabajar para si misma"{
+		assert.throwsExceptionWithMessage("Error en trabajaPara",
+			{melina.trabajaPara(melina)}
+		)
+	}
+}
+
+
+
+
